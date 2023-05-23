@@ -1,0 +1,54 @@
+<div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                          Halaman Input Data Kelas
+                        </div>
+                <div class="panel-body">
+                	<div class="row">
+                	<div class="col-lg-6">
+					<?php echo form_open (); ?>
+					<?php echo validation_errors();?>
+						<form>
+							<legend>Tambah Data</legend>
+							<div class="form-group">
+								<label>Kelas</label>
+								<select class="form-control" name="kelas" value="<?php echo $editdata->kelas;?>">
+                                                <option>7</option>
+                                                <option>8</option>
+                                                <option>9</option>
+                                </select>
+							</div>
+
+                            <div class="form-group">
+								<label>Sub kelas</label>
+								<select class="form-control" name="sub_kelas" value="<?php echo $editdata->sub_kelas;?>"">
+                                                <option>A</option>
+                                                <option>B</option>
+                                                <option>C</option>
+                                                <option>D</option>
+                                                <option>E</option>
+                                </select>
+							</div>
+
+							<div class="form-group">
+								<label>Jumlah Siswa</label>
+								<input class="form-control" name="jml_siswa" value="<?php echo $editdata->jml_siswa;?>">
+							</div>
+
+							<div class="form-group">
+								<label>Wali Kelas</label>
+								<input class="form-control" name="nip" value="<?php echo $editdata->nip;?>">
+							</div>
+							
+							<label></label>
+							<input type="hidden" name="id" value="<?php echo $editdata->id_kelas;?>">
+							<input type="submit" class="btn" name="submit" value="Update data">
+						</form>
+					          <?php echo form_close();?>
+					</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</div>

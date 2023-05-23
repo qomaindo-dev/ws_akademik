@@ -1,0 +1,60 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class jadwal_guru extends CI_Model {
+
+	var $table_jadwal = 'jadwal';
+
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->database();
+	}
+
+	
+	 public function joinTiga($field,$tbl1,$tbl2,$tbl3,$tbl4,$id1,$id2,$id3,$id4,$id5,$id6,$key,$args) {
+        $this->db->select($field);
+        $this->db->from($tbl1);
+        $this->db->join($tbl2, $id1.'='.$id2);    
+        $this->db->join($tbl3, $id3.'='.$id4);    
+        $this->db->join($tbl4, $id5.'='.$id6); 
+        $this->db->where($key,$args); 
+
+        $query = $this->db->get();
+        if($query->num_rows()>0){
+            return $query->result();
+        }else{
+            return 0;
+        }
+    }
+
+
+	 public function data_jadwal($id){
+  		  $this->db->select('
+                          jadwal.nip as nip,
+                         
+                          jadwal.id_mapel,
+                          jadwal.id_kelas,
+                          jadwal.jam,
+                          mata_pelajaran.mata_pelajaran,
+                          kelas.kelas
+                       ');
+    		$this->db->from($this->table_jadwal);
+    		$this->db->where('jadwal.nip',$id);
+        // $this->db->where('jadwal.is_delete','0');
+        // $this->db->where('petugas.is_delete','0');
+        $this->db->join('kelas', 'kelas.id_kelas = jadwal.id_kelas');
+        $this->db->join('mata_pelajaran', 'mata_pelajaran.id_mapel = jadwal.id_mapel');
+        $query = $this->db->get();
+    		if ($query->num_rows() >0){
+    				foreach ($query->result() as $data) {
+      					$profile[] = $data;
+    				}
+      			return $profile;
+  			}
+		}
+
+
+}
+
+/* End of file jadwal_model.php */
+/* Location: ./application/models/jadwal_model.php */
